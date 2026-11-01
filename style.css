@@ -1,12 +1,14 @@
+
 /* =========================================
-   GATHA AI CHATBOT - PIXEL ART UI
+   GATHA AI - PIXEL ART EDITION
+   Compatible with your HTML and JavaScript
    ========================================= */
 
 /* RESET */
 * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 :root {
@@ -15,281 +17,538 @@
     --text: #e9e4ee;
     --gold: #ffd700;
     --purple: #8064c9;
+    --muted: #9b91ad;
 }
 
 /* BODY */
 body {
-    background-color: var(--bg);
-    color: var(--text);
-    font-family: 'Press Start 2P', monospace;
-    image-rendering: pixelated;
+    min-height: 100vh;
+    padding: 20px;
 
     display: flex;
     justify-content: center;
     align-items: center;
 
-    min-height: 100vh;
-    padding: 15px;
+    background: var(--bg);
+    color: var(--text);
+
+    font-family: 'Press Start 2P', monospace;
+    image-rendering: pixelated;
 }
 
-/* MAIN CHAT WINDOW */
-.gatha-chat-container {
-    background-color: var(--panel);
-    background-image: url('./gatha_ai_chat_window.jpg');
-
-    width: 650px;
-    height: 500px;
-    max-width: 100%;
-
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
+/* MAIN APP */
+.app-container {
+    width: 100%;
+    max-width: 850px;
+    height: 85vh;
+    min-height: 550px;
+    max-height: 850px;
 
     position: relative;
-    padding: 45px 25px 25px;
 
     display: flex;
     flex-direction: column;
+
+    background-color: var(--panel);
+    background-image: url('./gatha_ai_chat_window.jpg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+
+    border: 3px solid #554477;
+    box-shadow: 0 0 30px #8064c933;
+    overflow: hidden;
 }
 
 /* HEADER */
-.gatha-chat-header {
-    height: 30px;
+.header {
+    min-height: 75px;
+    padding: 15px 25px;
 
     display: flex;
     justify-content: space-between;
     align-items: center;
 
-    position: absolute;
-    top: 8px;
-    left: 25px;
-    right: 25px;
-
-    font-size: 10px;
-    color: var(--gold);
+    background: #171326dd;
+    border-bottom: 2px solid #554477;
 }
 
-.gatha-chat-header .title {
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.brand-icon {
+    width: 45px;
+    height: 45px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-image: url('./gatha_ai_bot_icon.jpg');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    color: var(--gold);
+    font-size: 20px;
+}
+
+.brand-icon i {
+    text-shadow: 0 0 10px var(--gold);
+}
+
+.brand-info h2 {
+    font-size: 13px;
+    color: var(--gold);
+    letter-spacing: 2px;
+}
+
+.brand-info p {
+    margin-top: 8px;
+    font-size: 7px;
+    color: var(--muted);
+}
+
+/* ONLINE STATUS */
+.status {
     display: flex;
     align-items: center;
     gap: 8px;
+
+    font-size: 8px;
+    color: #70e6a0;
 }
 
-/* BOT ICON */
-.gatha-chat-header .bot-icon-small {
-    background-image: url('./gatha_ai_bot_icon.jpg');
+.status-dot {
+    width: 8px;
+    height: 8px;
 
-    width: 22px;
-    height: 22px;
-
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
+    border-radius: 50%;
+    background: #70e6a0;
+    box-shadow: 0 0 10px #70e6a0;
 }
 
-/* CHAT LOG */
-.gatha-chat-log {
+/* MAIN CONTENT */
+.main-content {
     flex: 1;
-    overflow-y: auto;
-
-    padding: 10px 5px 15px;
+    min-height: 0;
 
     display: flex;
     flex-direction: column;
+
+    position: relative;
+    overflow: hidden;
+}
+
+/* WELCOME SCREEN */
+.info {
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+    padding: 20px;
+}
+
+.welcome-icon {
+    width: 85px;
+    height: 85px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-image: url('./gatha_ai_bot_icon.jpg');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    font-size: 35px;
+    color: var(--gold);
+
+    margin-bottom: 25px;
+
+    animation: float 3s ease-in-out infinite;
+}
+
+.welcome-label {
+    font-size: 9px;
+    color: var(--gold);
+    margin-bottom: 15px;
+}
+
+.info h1 {
+    font-size: clamp(22px, 5vw, 35px);
+    color: white;
+    margin-bottom: 20px;
+
+    text-shadow: 3px 3px 0 #604a91;
+}
+
+.welcome-description {
+    max-width: 400px;
+
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    line-height: 1.8;
+
+    color: var(--muted);
+}
+
+.welcome-decoration {
+    display: flex;
     gap: 15px;
+
+    color: var(--gold);
+    font-size: 12px;
+
+    margin-top: 25px;
+}
+
+/* CHAT CONTAINER */
+.chat-container {
+    flex: 1;
+    min-height: 0;
+
+    overflow-y: auto;
+    padding: 20px 25px;
+
+    display: flex;
+    flex-direction: column;
 
     scrollbar-width: thin;
     scrollbar-color: var(--purple) transparent;
 }
 
-/* MESSAGE */
-.gatha-message {
+/* CHAT LOG */
+#chat-log {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+/* CHAT MESSAGE */
+.chat-box {
     display: flex;
     align-items: flex-start;
-    margin-bottom: 5px;
-}
+    gap: 12px;
 
-.gatha-message.user {
-    justify-content: flex-end;
-}
+    width: 100%;
 
-.gatha-message.bot {
-    justify-content: flex-start;
+    animation: messageIn 0.25s ease;
 }
 
 /* AVATAR */
-.gatha-avatar {
-    width: 32px;
-    height: 32px;
+.chat-box .icon {
+    width: 38px;
+    height: 38px;
     flex-shrink: 0;
 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     background-repeat: no-repeat;
-    background-size: contain;
     background-position: center;
+    background-size: contain;
 
-    margin-right: 10px;
+    font-size: 14px;
 }
 
-.gatha-message.user .gatha-avatar {
-    background-image: url('./gatha_ai_user_idle.jpg');
-
-    margin-right: 0;
-    margin-left: 10px;
-
-    order: 2;
-}
-
-.gatha-message.bot .gatha-avatar {
+/* BOT AVATAR */
+#bot-icon {
     background-image: url('./gatha_ai_bot_icon.jpg');
+    color: var(--gold);
 }
 
-/* MESSAGE CONTENT */
-.gatha-message-content {
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
+/* USER AVATAR */
+#user-icon {
+    background-image: url('./gatha_ai_user_idle.jpg');
+    color: white;
+}
+
+/* HIDE ICON FONT WHEN IMAGE IS USED */
+#bot-icon i,
+#user-icon i {
+    display: none;
+}
+
+/* MESSAGE BUBBLES */
+.chat-box .user,
+.chat-box .bot {
+    max-width: 75%;
+    min-width: 0;
 
     padding: 15px;
 
     font-size: 9px;
-    line-height: 1.8;
+    line-height: 2;
 
-    max-width: 70%;
     overflow-wrap: anywhere;
+
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
 }
 
-/* USER BUBBLE */
-.gatha-message.user .gatha-message-content {
+/* USER MESSAGE */
+.chat-box .user {
     background-image: url('./gatha_ai_user_chat_bubble.jpg');
     color: #ffffff;
+
+    margin-left: auto;
 }
 
-/* BOT BUBBLE */
-.gatha-message.bot .gatha-message-content {
+/* BOT MESSAGE */
+.chat-box .bot {
     background-image: url('./gatha_ai_bot_chat_bubble.jpg');
     color: var(--text);
 }
 
-/* INPUT AREA */
-.gatha-chat-input-area {
-    min-height: 60px;
+/* USER MESSAGE ALIGNMENT */
+.chat-box:has(#user-icon) {
+    flex-direction: row-reverse;
+}
 
+/* TYPING INDICATOR */
+.typing-indicator {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    gap: 6px;
+}
 
-    border-top: 2px solid #39304e;
+.typing-indicator span {
+    width: 7px;
+    height: 7px;
 
-    padding-top: 10px;
-    margin-top: auto;
+    display: inline-block;
+
+    border-radius: 50%;
+    background: var(--gold);
+
+    animation: typing 1s infinite ease-in-out;
+}
+
+.typing-indicator span:nth-child(2) {
+    animation-delay: 0.15s;
+}
+
+.typing-indicator span:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+/* INPUT AREA */
+.input-container {
+    padding: 15px 25px 12px;
+
+    background: #171326ee;
+    border-top: 2px solid #554477;
+}
+
+/* INPUT WRAPPER */
+.input-wrapper {
+    display: flex;
+    align-items: center;
     gap: 10px;
+
+    width: 100%;
 }
 
 /* TEXT INPUT */
-.gatha-chat-input-area #user-input {
+#user-input {
     flex: 1;
     min-width: 0;
 
-    background: #171326;
-    border: 2px solid #51416f;
+    padding: 16px;
+
+    background: #100d20;
+    border: 2px solid #554477;
     outline: none;
 
-    padding: 12px;
+    color: white;
 
-    font-family: 'Press Start 2P', monospace;
-    font-size: 9px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
 
-    color: var(--text);
+    transition: border-color 0.2s;
 }
 
-.gatha-chat-input-area #user-input:focus {
+#user-input:focus {
     border-color: var(--gold);
 }
 
-.gatha-chat-input-area #user-input::placeholder {
-    color: #8b829d;
+#user-input::placeholder {
+    color: #81758f;
 }
 
 /* SEND BUTTON */
-.gatha-chat-input-area #send-button {
-    background-color: transparent;
-    background-image: url('./gatha_ai_send_button.jpg');
-
-    width: 60px;
-    height: 35px;
+#send-button {
+    width: 58px;
+    height: 48px;
     flex-shrink: 0;
 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: transparent;
+    background-image: url('./gatha_ai_send_button.jpg');
     background-repeat: no-repeat;
     background-size: 100% 100%;
     background-position: center;
 
     border: none;
-    cursor: pointer;
-    order: 2;
 
-    transition: transform 0.15s;
+    color: white;
+    font-size: 16px;
+
+    cursor: pointer;
+
+    transition: transform 0.2s;
 }
 
-.gatha-chat-input-area #send-button:hover {
+#send-button:hover {
     transform: scale(1.08);
 }
 
-.gatha-chat-input-area #send-button:active {
+#send-button:active {
     transform: scale(0.92);
 }
 
+#send-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
 /* FOOTER */
-.gatha-chat-footer {
-    position: absolute;
-
-    bottom: 7px;
-    left: 20px;
-    right: 20px;
-
-    font-size: 7px;
-    color: var(--gold);
-
-    text-align: center;
+.footer-text {
+    margin-top: 15px;
 
     display: flex;
     justify-content: center;
-    gap: 10px;
+    align-items: center;
+    gap: 8px;
+
+    font-size: 7px;
+    color: var(--gold);
+}
+
+/* ANIMATIONS */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes messageIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes typing {
+    0%, 60%, 100% {
+        transform: translateY(0);
+        opacity: 0.5;
+    }
+
+    30% {
+        transform: translateY(-5px);
+        opacity: 1;
+    }
 }
 
 /* MOBILE RESPONSIVE */
 @media (max-width: 600px) {
     body {
-        padding: 5px;
+        padding: 0;
+        min-height: 100dvh;
     }
 
-    .gatha-chat-container {
+    .app-container {
         width: 100%;
-        height: 90vh;
-        max-height: 650px;
+        height: 100dvh;
+        min-height: 0;
+        max-height: none;
 
-        padding: 45px 15px 25px;
+        border: none;
     }
 
-    .gatha-chat-header {
-        left: 18px;
-        right: 18px;
-        font-size: 8px;
+    .header {
+        min-height: 65px;
+        padding: 12px 15px;
     }
 
-    .gatha-message-content {
-        max-width: 80%;
-        font-size: 8px;
-        padding: 12px;
+    .brand-icon {
+        width: 35px;
+        height: 35px;
     }
 
-    .gatha-avatar {
-        width: 27px;
-        height: 27px;
+    .brand-info h2 {
+        font-size: 10px;
     }
 
-    .gatha-chat-input-area #user-input {
-        font-size: 8px;
-    }
-
-    .gatha-chat-footer {
+    .brand-info p {
         font-size: 6px;
+    }
+
+    .status {
+        font-size: 7px;
+    }
+
+    .chat-container {
+        padding: 15px 12px;
+    }
+
+    .chat-box .icon {
+        width: 30px;
+        height: 30px;
+    }
+
+    .chat-box .user,
+    .chat-box .bot {
+        max-width: 82%;
+        padding: 12px;
+
+        font-size: 8px;
+        line-height: 1.9;
+    }
+
+    .input-container {
+        padding: 12px 12px 15px;
+    }
+
+    #user-input {
+        padding: 13px;
+        font-size: 13px;
+    }
+
+    #send-button {
+        width: 48px;
+        height: 42px;
+    }
+
+    .footer-text {
+        font-size: 6px;
+    }
+
+    .welcome-description {
+        font-size: 12px;
     }
 }
