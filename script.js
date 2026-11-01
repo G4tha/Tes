@@ -6,7 +6,7 @@ const buttonIcon = document.getElementById('button-icon');
 const info = document.querySelector('.info');
 const chatContainer = document.querySelector('.chat-container');
 
-const API_URL = 'https://chatbot-api-gatha.akunalt2727.workers.dev';
+const API_URL = '';
 
 let isLoading = false;
 
