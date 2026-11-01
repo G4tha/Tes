@@ -1,180 +1,297 @@
 
-/* ==============================
-   GATHA AI — PIXEL EDITION
-   ============================== */
+/* =========================================
+   GATHA AI — PIXEL RPG EDITION
+   Retro 16-bit game interface
+========================================= */
 
 :root {
-    --bg: #100d20;
-    --panel: #1b1730;
-    --panel-light: #292341;
-    --text: #f5f0ff;
-    --muted: #aaa2c4;
-    --accent: #a78bfa;
-    --border: #51436e;
+    --bg: #100c20;
+    --bg2: #19132d;
+    --panel: #211a3a;
+    --panel2: #30264d;
+
+    --purple: #a98bff;
+    --purple-dark: #674bb0;
+    --blue: #72c9ff;
+    --white: #f5efff;
+    --muted: #aaa0c8;
+
+    --pixel-border: #514273;
+    --green: #7bffa5;
+
+    --pixel-font: 'Press Start 2P', monospace;
+    --normal-font: 'Inter', sans-serif;
 }
+
+/* RESET */
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    image-rendering: pixelated;
 }
 
 body {
+    width: 100%;
     min-height: 100vh;
+    padding: 24px;
+
     display: flex;
-    align-items: center;
     justify-content: center;
-    padding: 20px;
-    background:
-        radial-gradient(circle at top, #292044, #100d20 65%);
-    color: var(--text);
-    font-family: 'Inter', sans-serif;
+    align-items: center;
+
+    overflow: hidden;
+
+    color: var(--white);
+    font-family: var(--normal-font);
+
+    background-color: var(--bg);
+    background-image:
+        linear-gradient(#ffffff08 1px, transparent 1px),
+        linear-gradient(90deg, #ffffff08 1px, transparent 1px),
+        radial-gradient(circle at 50% 40%, #342354, #100c20 75%);
+
+    background-size:
+        16px 16px,
+        16px 16px,
+        cover;
 }
 
-/* MAIN CONTAINER */
+/* MAIN WINDOW */
 
 .app-container {
-    width: 100%;
-    max-width: 1000px;
-    height: min(850px, 92vh);
-    min-height: 550px;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
     position: relative;
 
+    width: 100%;
+    max-width: 1050px;
+    height: min(850px, 92vh);
+    min-height: 550px;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+
     background:
-        linear-gradient(#100d20dd, #100d20ee),
+        linear-gradient(#100c20d9, #100c20e8),
         url("./gatha_ai_chat_window.png");
 
     background-size: cover;
     background-position: center;
 
-    border: 2px solid var(--border);
-    border-radius: 18px;
-    box-shadow: 0 20px 60px #0008;
+    border: 4px solid #514273;
+
+    box-shadow:
+        0 0 0 4px #211a3a,
+        0 0 0 8px #514273,
+        12px 12px 0 #080612,
+        0 0 50px #a98bff20;
+}
+
+/* SCANLINES */
+
+.app-container::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+
+    pointer-events: none;
+
+    background:
+        repeating-linear-gradient(
+            to bottom,
+            transparent 0px,
+            transparent 3px,
+            #00000012 4px
+        );
 }
 
 /* HEADER */
 
 .header {
-    min-height: 75px;
+    position: relative;
+    z-index: 2;
+
+    min-height: 82px;
+    padding: 15px 25px;
+
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    padding: 14px 25px;
-    background: #19142b;
-    border-bottom: 2px solid var(--border);
+    align-items: center;
+
+    background: #19132d;
+    border-bottom: 4px solid var(--pixel-border);
+
+    box-shadow: 0 5px 0 #0b0815;
 }
 
 .brand {
     display: flex;
     align-items: center;
-    gap: 13px;
+    gap: 16px;
 }
 
 .brand-icon {
-    width: 45px;
-    height: 45px;
-    border-radius: 10px;
-    background: url("./gatha_ai_bot_icon.png") center/cover;
-    border: 2px solid var(--accent);
+    width: 48px;
+    height: 48px;
+
+    background:
+        url("./gatha_ai_bot_icon.png") center/cover;
+
+    border: 3px solid var(--purple);
+
+    box-shadow:
+        4px 4px 0 #080612,
+        0 0 0 3px #514273;
 }
 
 .brand-info h2 {
-    font-family: 'Press Start 2P', cursive;
+    font-family: var(--pixel-font);
     font-size: 15px;
-    letter-spacing: 1px;
+    color: var(--white);
+    text-shadow: 3px 3px 0 #674bb0;
 }
 
 .brand-info h2 span {
-    color: var(--accent);
+    color: var(--blue);
 }
 
 .brand-info p {
-    margin-top: 7px;
-    font-size: 9px;
-    letter-spacing: 2px;
+    margin-top: 10px;
+
+    font-family: var(--pixel-font);
+    font-size: 8px;
     color: var(--muted);
 }
+
+/* ONLINE STATUS */
 
 .status {
     display: flex;
     align-items: center;
-    gap: 8px;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    color: #8cf0ad;
+    gap: 10px;
+
+    font-family: var(--pixel-font);
+    font-size: 8px;
+    color: var(--green);
 }
 
 .status-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: #64e88c;
-    box-shadow: 0 0 10px #64e88c;
+    width: 10px;
+    height: 10px;
+
+    background: var(--green);
+
+    box-shadow:
+        3px 3px 0 #286d48,
+        0 0 10px #7bffa566;
+
+    animation: blink 1.5s steps(2) infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0.3;
+    }
 }
 
 /* MAIN CONTENT */
 
 .main-content {
+    position: relative;
+    z-index: 1;
+
     flex: 1;
     min-height: 0;
+
     display: flex;
     flex-direction: column;
     align-items: center;
+
     padding: 20px;
     overflow: hidden;
 }
 
-/* WELCOME */
+/* WELCOME SCREEN */
 
 .info {
     width: 100%;
     flex: 1;
     min-height: 180px;
+
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+
     text-align: center;
-    gap: 12px;
+    gap: 14px;
 }
 
 .welcome-icon {
-    width: 75px;
-    height: 75px;
-    background: url("./gatha_ai_bot_icon.png") center/cover;
-    border: 2px solid var(--accent);
-    border-radius: 16px;
-    box-shadow: 0 0 25px #a78bfa44;
-    image-rendering: pixelated;
+    width: 82px;
+    height: 82px;
+
+    background:
+        url("./gatha_ai_bot_icon.png") center/cover;
+
+    border: 4px solid var(--purple);
+
+    box-shadow:
+        6px 6px 0 #080612,
+        0 0 0 4px #514273;
+
+    animation: float 2s steps(4) infinite;
+}
+
+@keyframes float {
+    50% {
+        transform: translateY(-5px);
+    }
 }
 
 .welcome-label {
-    color: var(--accent);
-    font-family: 'Press Start 2P', cursive;
+    font-family: var(--pixel-font);
     font-size: 9px;
+    color: var(--blue);
+    letter-spacing: 2px;
 }
 
 .info h1 {
-    font-family: 'Press Start 2P', cursive;
-    font-size: clamp(20px, 4vw, 30px);
+    font-family: var(--pixel-font);
+    font-size: clamp(22px, 4vw, 34px);
+
+    color: var(--white);
+
+    text-shadow:
+        4px 4px 0 #674bb0,
+        7px 7px 0 #080612;
 }
 
 .welcome-description {
-    max-width: 350px;
+    max-width: 380px;
+
     color: var(--muted);
     font-size: 13px;
-    line-height: 1.7;
+    line-height: 1.8;
 }
 
 .welcome-decoration {
     display: flex;
-    gap: 12px;
-    color: var(--accent);
-    font-size: 12px;
+    gap: 15px;
+
+    color: var(--purple);
+    font-size: 14px;
+
+    animation: decoration 2s steps(2) infinite;
+}
+
+@keyframes decoration {
+    50% {
+        opacity: 0.4;
+    }
 }
 
 /* CHAT AREA */
@@ -183,57 +300,77 @@ body {
     width: 100%;
     flex: 1;
     min-height: 0;
+
     overflow-y: auto;
-    padding: 10px 12px;
-    scroll-behavior: smooth;
+
+    padding: 15px 12px;
+
+    scrollbar-width: thin;
+    scrollbar-color: var(--purple-dark) #171128;
 }
 
 .chat-container::-webkit-scrollbar {
-    width: 6px;
+    width: 8px;
+}
+
+.chat-container::-webkit-scrollbar-track {
+    background: #171128;
 }
 
 .chat-container::-webkit-scrollbar-thumb {
-    background: var(--border);
-    border-radius: 10px;
+    background: var(--purple-dark);
+    border: 2px solid #171128;
 }
 
 #chat-log {
     width: 100%;
+
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 22px;
 }
 
-/* CHAT MESSAGE */
+/* CHAT ROW */
 
 .chat-box {
     width: 100%;
+
     display: flex;
     align-items: flex-start;
-    gap: 12px;
-    animation: appear 0.25s ease;
+    gap: 14px;
+
+    animation: message-enter 0.2s steps(4);
 }
 
-@keyframes appear {
+@keyframes message-enter {
     from {
         opacity: 0;
         transform: translateY(8px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
     }
 }
 
+/* BOT AND USER ICONS */
+
 .icon {
-    width: 38px;
-    height: 38px;
+    width: 42px;
+    height: 42px;
     flex-shrink: 0;
+
     overflow: hidden;
-    border: 2px solid var(--border);
-    border-radius: 9px;
-    background-size: cover;
+
+    border: 3px solid var(--purple);
+
+    box-shadow:
+        4px 4px 0 #080612,
+        0 0 0 2px #514273;
+
     background-position: center;
+    background-size: cover;
 }
 
 .icon i {
@@ -241,65 +378,87 @@ body {
 }
 
 #bot-icon {
-    background-image: url("./gatha_ai_bot_icon.png");
+    background-image:
+        url("./gatha_ai_bot_icon.png");
 }
 
 #user-icon {
-    background-image: url("./gatha_ai_user_idle.png");
+    background-image:
+        url("./gatha_ai_user_idle.png");
 }
 
 /* MESSAGE BUBBLES */
 
 .chat-box .user,
 .chat-box .bot {
-    max-width: min(75%, 600px);
-    padding: 13px 16px;
-    border: 2px solid var(--border);
-    border-radius: 5px 14px 14px 14px;
+    max-width: min(75%, 620px);
+
+    padding: 15px 17px;
+
+    font-family: var(--normal-font);
     font-size: 14px;
-    line-height: 1.7;
-    overflow-wrap: anywhere;
+    line-height: 1.8;
+
     white-space: pre-wrap;
-    box-shadow: 0 5px 15px #0003;
+    overflow-wrap: anywhere;
+
+    border: 3px solid var(--pixel-border);
+
+    box-shadow:
+        5px 5px 0 #080612;
+
+    border-radius: 0;
 }
+
+/* BOT MESSAGE */
+
+.chat-box .bot {
+    color: var(--white);
+
+    background:
+        linear-gradient(#211a3add, #211a3add),
+        url("./gatha_ai_bot_chat_bubble.png") center/cover;
+
+    border-color: #8068b5;
+}
+
+/* USER MESSAGE */
 
 .chat-box .user {
     margin-left: auto;
-    color: #fff;
+
+    color: #ffffff;
+
     background:
-        linear-gradient(#292044bb, #292044bb),
+        linear-gradient(#392c60dd, #392c60dd),
         url("./gatha_ai_user_chat_bubble.png") center/cover;
-    border-color: #8c70c9;
-    border-radius: 14px 5px 14px 14px;
+
+    border-color: #a98bff;
 }
 
-.chat-box .bot {
-    color: var(--text);
-    background:
-        linear-gradient(#211b36dd, #211b36dd),
-        url("./gatha_ai_bot_chat_bubble.png") center/cover;
-}
-
-/* USER MESSAGE ALIGNMENT */
+/* USER ALIGNMENT */
 
 .chat-box:has(.user) {
     flex-direction: row-reverse;
 }
 
-/* TYPING INDICATOR */
+/* TYPING ANIMATION */
 
 .typing-indicator {
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 7px;
 }
 
 .typing-indicator span {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: var(--accent);
-    animation: typing 1s infinite ease-in-out;
+    width: 8px;
+    height: 8px;
+
+    background: var(--blue);
+
+    box-shadow: 2px 2px 0 #080612;
+
+    animation: pixel-typing 0.8s steps(2) infinite;
 }
 
 .typing-indicator span:nth-child(2) {
@@ -310,84 +469,113 @@ body {
     animation-delay: 0.3s;
 }
 
-@keyframes typing {
-    0%, 60%, 100% {
+@keyframes pixel-typing {
+    50% {
+        transform: translateY(-6px);
         opacity: 0.4;
-        transform: translateY(0);
-    }
-    30% {
-        opacity: 1;
-        transform: translateY(-5px);
     }
 }
 
 /* INPUT AREA */
 
 .input-container {
-    padding: 18px 22px 14px;
-    background: #19142b;
-    border-top: 2px solid var(--border);
+    position: relative;
+    z-index: 2;
+
+    padding: 18px 22px 15px;
+
+    background: #19132d;
+
+    border-top: 4px solid var(--pixel-border);
+
+    box-shadow: 0 -5px 0 #0b0815;
 }
 
 .input-wrapper {
     width: 100%;
+
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 7px;
-    background: #100d20;
-    border: 2px solid var(--border);
-    border-radius: 12px;
-    transition: border-color 0.2s;
+    gap: 12px;
+
+    padding: 8px;
+
+    background: #100c20;
+
+    border: 3px solid #514273;
+
+    box-shadow:
+        5px 5px 0 #080612;
 }
 
 .input-wrapper:focus-within {
-    border-color: var(--accent);
-    box-shadow: 0 0 15px #a78bfa22;
+    border-color: var(--blue);
+
+    box-shadow:
+        5px 5px 0 #080612,
+        0 0 15px #72c9ff33;
 }
 
 #user-input {
     flex: 1;
     min-width: 0;
-    padding: 12px;
-    color: white;
+
+    padding: 13px;
+
+    color: var(--white);
     background: transparent;
+
     border: none;
     outline: none;
-    font-family: 'Inter', sans-serif;
+
+    font-family: var(--normal-font);
     font-size: 14px;
 }
 
 #user-input::placeholder {
-    color: #827a9c;
+    color: #82769e;
 }
 
-#send-button {
-    width: 45px;
-    height: 45px;
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+/* SEND BUTTON */
 
-    background:
-        linear-gradient(#a78bfa55, #a78bfa55),
-        url("./gatha_ai_send_button.png") center/cover;
+#send-button {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     color: white;
-    border: 2px solid var(--accent);
-    border-radius: 9px;
+
+    background:
+        linear-gradient(#a98bff55, #a98bff55),
+        url("./gatha_ai_send_button.png") center/cover;
+
+    border: 3px solid var(--purple);
+
+    box-shadow:
+        4px 4px 0 #080612;
+
     cursor: pointer;
-    transition: 0.2s;
+
+    transition: transform 0.1s steps(2);
 }
 
 #send-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px #a78bfa55;
+    background-color: #674bb0;
+    transform: translate(-2px, -2px);
+
+    box-shadow:
+        6px 6px 0 #080612;
 }
 
 #send-button:active {
-    transform: scale(0.94);
+    transform: translate(3px, 3px);
+
+    box-shadow:
+        1px 1px 0 #080612;
 }
 
 #send-button:disabled {
@@ -396,24 +584,32 @@ body {
 }
 
 #button-icon {
-    font-size: 16px;
+    font-size: 17px;
 }
 
+/* FOOTER */
+
 .footer-text {
-    margin-top: 12px;
+    margin-top: 15px;
+
     text-align: center;
+
+    font-family: var(--pixel-font);
+    font-size: 8px;
+
+    letter-spacing: 1px;
+
     color: var(--muted);
-    font-size: 9px;
-    letter-spacing: 2px;
 }
 
 .footer-text i {
-    color: var(--accent);
+    color: var(--blue);
 }
 
-/* MOBILE RESPONSIVE */
+/* MOBILE */
 
 @media (max-width: 600px) {
+
     body {
         padding: 0;
     }
@@ -422,26 +618,37 @@ body {
         width: 100%;
         height: 100dvh;
         min-height: 0;
+
         border: none;
-        border-radius: 0;
+
+        box-shadow: none;
     }
 
     .header {
-        min-height: 65px;
-        padding: 10px 15px;
+        min-height: 72px;
+        padding: 12px 15px;
+    }
+
+    .brand {
+        gap: 12px;
     }
 
     .brand-icon {
-        width: 39px;
-        height: 39px;
+        width: 40px;
+        height: 40px;
     }
 
     .brand-info h2 {
-        font-size: 12px;
+        font-size: 11px;
     }
 
     .brand-info p {
-        font-size: 8px;
+        font-size: 7px;
+    }
+
+    .status {
+        font-size: 7px;
+        gap: 7px;
     }
 
     .main-content {
@@ -449,48 +656,72 @@ body {
     }
 
     .info {
-        min-height: 160px;
+        min-height: 170px;
+        gap: 12px;
     }
 
     .welcome-icon {
-        width: 60px;
-        height: 60px;
+        width: 65px;
+        height: 65px;
     }
 
     .welcome-label {
         font-size: 8px;
     }
 
+    .info h1 {
+        font-size: 22px;
+    }
+
     .welcome-description {
+        max-width: 280px;
         font-size: 12px;
     }
 
     .chat-container {
-        padding: 8px 4px;
+        padding: 12px 4px;
+    }
+
+    #chat-log {
+        gap: 18px;
     }
 
     .chat-box {
-        gap: 8px;
+        gap: 10px;
     }
 
     .icon {
-        width: 32px;
-        height: 32px;
+        width: 34px;
+        height: 34px;
     }
 
     .chat-box .user,
     .chat-box .bot {
         max-width: 82%;
-        padding: 11px 13px;
+        padding: 11px 12px;
         font-size: 13px;
     }
 
     .input-container {
-        padding: 12px 13px 10px;
+        padding: 13px 13px 12px;
+    }
+
+    .input-wrapper {
+        gap: 8px;
+        padding: 6px;
+    }
+
+    #user-input {
+        padding: 11px 8px;
+        font-size: 13px;
     }
 
     #send-button {
         width: 42px;
         height: 42px;
+    }
+
+    .footer-text {
+        font-size: 7px;
     }
 }
