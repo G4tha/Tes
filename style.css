@@ -1,8 +1,8 @@
 
-/* =====================================
-   GATHA AI — PIXEL FOREST EDITION
-   Indie RPG / Earth Tone / 16-bit
-===================================== */
+/* =========================================
+   GATHA AI — PIXEL FOREST FULLSCREEN
+   Indie RPG / Earth Tone / Pixel Art
+========================================= */
 
 :root {
     --background: #171a16;
@@ -31,9 +31,16 @@
     image-rendering: pixelated;
 }
 
+html,
 body {
-    min-height: 100vh;
-    padding: 24px;
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+}
+
+body {
+    padding: 0;
+    overflow: hidden;
 
     display: flex;
     align-items: center;
@@ -43,6 +50,7 @@ body {
     font-family: var(--normal-font);
 
     background-color: var(--background);
+
     background-image:
         radial-gradient(#a4b77b12 1px, transparent 1px);
 
@@ -55,26 +63,28 @@ body {
     position: relative;
 
     width: 100%;
-    max-width: 1050px;
-    height: min(850px, 92vh);
-    min-height: 550px;
+    max-width: none;
+
+    height: 100vh;
+    height: 100dvh;
+    min-height: 0;
 
     display: flex;
     flex-direction: column;
+
     overflow: hidden;
 
     background-color: var(--surface);
 
-    border: 3px solid var(--border);
-
-    box-shadow:
-        6px 6px 0 #090c08,
-        12px 12px 0 #090c0866;
+    border: none;
+    box-shadow: none;
 }
 
 /* HEADER */
 
 .header {
+    flex-shrink: 0;
+
     min-height: 76px;
     padding: 14px 24px;
 
@@ -92,7 +102,7 @@ body {
     gap: 15px;
 }
 
-/* HIDE HEADER ROBOT */
+/* REMOVE HEADER ROBOT */
 
 .brand-icon {
     display: none;
@@ -186,8 +196,7 @@ body {
 
     border: 3px solid var(--green);
 
-    box-shadow:
-        4px 4px 0 #090c08;
+    box-shadow: 4px 4px 0 #090c08;
 }
 
 .welcome-label {
@@ -331,7 +340,7 @@ body {
     border-radius: 0;
 }
 
-/* BOT */
+/* BOT MESSAGE */
 
 .chat-box .bot {
     color: var(--cream);
@@ -343,7 +352,7 @@ body {
     border-color: var(--green-dark);
 }
 
-/* USER */
+/* USER MESSAGE */
 
 .chat-box .user {
     margin-left: auto;
@@ -395,9 +404,11 @@ body {
     }
 }
 
-/* INPUT */
+/* INPUT AREA */
 
 .input-container {
+    flex-shrink: 0;
+
     padding: 17px 22px 14px;
 
     background: var(--surface-dark);
@@ -443,7 +454,7 @@ body {
     color: #858875;
 }
 
-/* SEND BUTTON */
+/* SEND BUTTON - PNG ONLY */
 
 #send-button {
     width: 45px;
@@ -454,37 +465,48 @@ body {
     align-items: center;
     justify-content: center;
 
-    color: var(--cream);
+    padding: 0;
 
     background:
-        linear-gradient(#65794d66, #65794d66),
-        url("./gatha_ai_send_button.png") center/cover;
+        url("./gatha_ai_send_button.png")
+        center / 100% 100% no-repeat !important;
 
-    border: 2px solid var(--green);
+    border: none !important;
+    box-shadow: none !important;
 
-    box-shadow: 3px 3px 0 #090c08;
-
+    color: transparent;
     cursor: pointer;
-    transition: 0.1s steps(2);
+
+    transition: transform 0.1s steps(2);
 }
+
+/* HIDE WHITE PAPER PLANE */
+
+#button-icon {
+    display: none !important;
+}
+
+/* BUTTON HOVER */
 
 #send-button:hover {
-    background-color: var(--green-dark);
-    transform: translate(-1px, -1px);
+    background-color: transparent !important;
+
+    filter: brightness(1.15);
+
+    transform: translateY(-2px);
+    box-shadow: none !important;
 }
 
+/* BUTTON CLICK */
+
 #send-button:active {
-    transform: translate(2px, 2px);
-    box-shadow: 1px 1px 0 #090c08;
+    transform: scale(0.92);
+    box-shadow: none !important;
 }
 
 #send-button:disabled {
     opacity: 0.5;
     cursor: not-allowed;
-}
-
-#button-icon {
-    font-size: 16px;
 }
 
 /* FOOTER */
@@ -503,6 +525,19 @@ body {
 
 .footer-text i {
     color: var(--green);
+}
+
+/* DESKTOP LARGE SCREEN */
+
+@media (min-width: 1200px) {
+    .main-content {
+        padding: 25px 7%;
+    }
+
+    .input-container {
+        padding-left: 7%;
+        padding-right: 7%;
+    }
 }
 
 /* MOBILE */
