@@ -1,48 +1,71 @@
-/* --- Gatha AI Chatbot Pixel Art Styles --- */
+/* =========================================
+   GATHA AI CHATBOT - PIXEL ART UI
+   ========================================= */
 
-/* Reset dan Pengaturan Font */
+/* RESET */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
+:root {
+    --bg: #100d20;
+    --panel: #1c1730;
+    --text: #e9e4ee;
+    --gold: #ffd700;
+    --purple: #8064c9;
+}
+
+/* BODY */
 body {
-    background: #100d20; /* Warna latar belakang gelap */
-    color: #e9e4ee; /* Warna teks utama */
-    font-family: 'Press Start 2P', monospace; /* Gunakan font pixelated */
-    image-rendering: pixelated; /* Jaga agar pixel art tetap tajam */
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Press Start 2P', monospace;
+    image-rendering: pixelated;
+
     display: flex;
     justify-content: center;
     align-items: center;
+
     min-height: 100vh;
+    padding: 15px;
 }
 
-/* Jendela Utama Chat (gatha_ai_chat_window.png) */
+/* MAIN CHAT WINDOW */
 .gatha-chat-container {
-    background-image: url('gatha_ai_chat_window.png');
-    width: 650px; /* Sesuaikan dengan ukuran gambar asli kamu */
+    background-color: var(--panel);
+    background-image: url('./gatha_ai_chat_window.png');
+
+    width: 650px;
     height: 500px;
+    max-width: 100%;
+
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 100% 100%;
+
     position: relative;
-    padding: 40px 20px 20px 20px; /* Padding untuk konten di dalam frame */
+    padding: 45px 25px 25px;
+
     display: flex;
     flex-direction: column;
 }
 
-/* Header Jendela (Gatha AI + Tombol) */
+/* HEADER */
 .gatha-chat-header {
     height: 30px;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
+
     position: absolute;
-    top: 5px;
-    left: 20px;
-    right: 20px;
+    top: 8px;
+    left: 25px;
+    right: 25px;
+
     font-size: 10px;
-    color: #ffd700;
+    color: var(--gold);
 }
 
 .gatha-chat-header .title {
@@ -51,27 +74,39 @@ body {
     gap: 8px;
 }
 
-/* Ikon Bot di Header (gatha_ai_bot_icon.png) */
+/* BOT ICON */
 .gatha-chat-header .bot-icon-small {
-    background-image: url('gatha_ai_bot_icon.png');
-    width: 20px; /* Sesuaikan ukuran ikon */
-    height: 20px;
+    background-image: url('./gatha_ai_bot_icon.png');
+
+    width: 22px;
+    height: 22px;
+
     background-repeat: no-repeat;
     background-size: contain;
+    background-position: center;
 }
 
-/* Area Chat (Pesan-pesan) */
+/* CHAT LOG */
 .gatha-chat-log {
     flex: 1;
     overflow-y: auto;
-    padding-right: 10px;
+
+    padding: 10px 5px 15px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    scrollbar-width: thin;
+    scrollbar-color: var(--purple) transparent;
 }
 
-/* Gelembung Pesan (gatha_ai_user_chat_bubble.png dan gatha_ai_bot_chat_bubble.png) */
+/* MESSAGE */
 .gatha-message {
-    margin-bottom: 20px;
     display: flex;
     align-items: flex-start;
+
+    margin-bottom: 5px;
 }
 
 .gatha-message.user {
@@ -82,94 +117,180 @@ body {
     justify-content: flex-start;
 }
 
-/* Ikon Avatar (Ikon Bot / Sprite User) */
+/* AVATAR */
 .gatha-avatar {
     width: 32px;
     height: 32px;
+    flex-shrink: 0;
+
     background-repeat: no-repeat;
     background-size: contain;
+    background-position: center;
+
     margin-right: 10px;
 }
 
 .gatha-message.user .gatha-avatar {
-    background-image: url('gatha_ai_user_idle.png');
+    background-image: url('./gatha_ai_user_idle.png');
+
     margin-right: 0;
     margin-left: 10px;
-    order: 2; /* Letakkan di kanan pesan user */
+
+    order: 2;
 }
 
 .gatha-message.bot .gatha-avatar {
-    background-image: url('gatha_ai_bot_icon.png');
+    background-image: url('./gatha_ai_bot_icon.png');
 }
 
-/* Teks Pesan di dalam Gelembung */
+/* MESSAGE CONTENT */
 .gatha-message-content {
     background-repeat: no-repeat;
-    background-size: cover;
-    padding: 12px 16px;
-    font-size: 10px;
-    color: #e9e4ee;
+    background-size: 100% 100%;
+
+    padding: 15px;
+
+    font-size: 9px;
+    line-height: 1.8;
+
     max-width: 70%;
+    overflow-wrap: anywhere;
 }
 
+/* USER BUBBLE */
 .gatha-message.user .gatha-message-content {
-    background-image: url('gatha_ai_user_chat_bubble.png');
-    color: #000000; /* Warna teks user yang lebih gelap */
+    background-image: url('./gatha_ai_user_chat_bubble.png');
+    color: #ffffff;
 }
 
+/* BOT BUBBLE */
 .gatha-message.bot .gatha-message-content {
-    background-image: url('gatha_ai_bot_chat_bubble.png');
+    background-image: url('./gatha_ai_bot_chat_bubble.png');
+    color: var(--text);
 }
 
-/* Area Input (di bagian bawah) */
+/* INPUT AREA */
 .gatha-chat-input-area {
-    height: 60px;
+    min-height: 60px;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-top: 2px solid #333; /* Pemisah visual */
-    padding: 10px 0 0 0;
-    margin-top: auto; /* Pastikan selalu di bawah */
+
+    border-top: 2px solid #39304e;
+
+    padding-top: 10px;
+    margin-top: auto;
+    gap: 10px;
 }
 
-/* Tombol Kirim (gatha_ai_send_button.png) */
-.gatha-chat-input-area #send-button {
-    background-image: url('gatha_ai_send_button.png');
-    width: 60px; /* Sesuaikan dengan ukuran tombol */
-    height: 32px;
-    background-repeat: no-repeat;
-    background-size: cover;
-    border: none;
-    cursor: pointer;
-    order: 2; /* Letakkan di kanan input */
-}
-
-/* Input Teks */
+/* TEXT INPUT */
 .gatha-chat-input-area #user-input {
     flex: 1;
-    background: #17151d;
-    border: none;
-    padding: 8px;
+    min-width: 0;
+
+    background: #171326;
+    border: 2px solid #51416f;
+    outline: none;
+
+    padding: 12px;
+
     font-family: 'Press Start 2P', monospace;
-    font-size: 10px;
-    color: #e9e4ee;
-    margin-right: 10px;
+    font-size: 9px;
+
+    color: var(--text);
 }
 
-/* Teks Footer */
+.gatha-chat-input-area #user-input:focus {
+    border-color: var(--gold);
+}
+
+.gatha-chat-input-area #user-input::placeholder {
+    color: #8b829d;
+}
+
+/* SEND BUTTON */
+.gatha-chat-input-area #send-button {
+    background-color: transparent;
+    background-image: url('./gatha_ai_send_button.png');
+
+    width: 60px;
+    height: 35px;
+    flex-shrink: 0;
+
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: center;
+
+    border: none;
+    cursor: pointer;
+    order: 2;
+
+    transition: transform 0.15s;
+}
+
+.gatha-chat-input-area #send-button:hover {
+    transform: scale(1.08);
+}
+
+.gatha-chat-input-area #send-button:active {
+    transform: scale(0.92);
+}
+
+/* FOOTER */
 .gatha-chat-footer {
     position: absolute;
-    bottom: 5px;
+
+    bottom: 7px;
     left: 20px;
     right: 20px;
-    font-size: 8px;
-    color: #ffd700;
+
+    font-size: 7px;
+    color: var(--gold);
+
     text-align: center;
+
     display: flex;
     justify-content: center;
     gap: 10px;
 }
 
-.gatha-chat-footer i {
-    color: #ffd700;
+/* MOBILE RESPONSIVE */
+@media (max-width: 600px) {
+    body {
+        padding: 5px;
+    }
+
+    .gatha-chat-container {
+        width: 100%;
+        height: 90vh;
+        max-height: 650px;
+
+        padding: 45px 15px 25px;
+    }
+
+    .gatha-chat-header {
+        left: 18px;
+        right: 18px;
+        font-size: 8px;
+    }
+
+    .gatha-message-content {
+        max-width: 80%;
+        font-size: 8px;
+        padding: 12px;
+    }
+
+    .gatha-avatar {
+        width: 27px;
+        height: 27px;
+    }
+
+    .gatha-chat-input-area #user-input {
+        font-size: 8px;
+    }
+
+    .gatha-chat-footer {
+        font-size: 6px;
+    }
 }
