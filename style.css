@@ -35,7 +35,7 @@ body {
 /* MAIN CHAT WINDOW */
 .gatha-chat-container {
     background-color: var(--panel);
-    background-image: url('./gatha_ai_chat_window.png');
+    background-image: url('./gatha_ai_chat_window.jpg');
 
     width: 650px;
     height: 500px;
@@ -76,7 +76,7 @@ body {
 
 /* BOT ICON */
 .gatha-chat-header .bot-icon-small {
-    background-image: url('./gatha_ai_bot_icon.png');
+    background-image: url('./gatha_ai_bot_icon.jpg');
 
     width: 22px;
     height: 22px;
@@ -105,7 +105,6 @@ body {
 .gatha-message {
     display: flex;
     align-items: flex-start;
-
     margin-bottom: 5px;
 }
 
@@ -131,7 +130,7 @@ body {
 }
 
 .gatha-message.user .gatha-avatar {
-    background-image: url('./gatha_ai_user_idle.png');
+    background-image: url('./gatha_ai_user_idle.jpg');
 
     margin-right: 0;
     margin-left: 10px;
@@ -140,7 +139,7 @@ body {
 }
 
 .gatha-message.bot .gatha-avatar {
-    background-image: url('./gatha_ai_bot_icon.png');
+    background-image: url('./gatha_ai_bot_icon.jpg');
 }
 
 /* MESSAGE CONTENT */
@@ -159,13 +158,13 @@ body {
 
 /* USER BUBBLE */
 .gatha-message.user .gatha-message-content {
-    background-image: url('./gatha_ai_user_chat_bubble.png');
+    background-image: url('./gatha_ai_user_chat_bubble.jpg');
     color: #ffffff;
 }
 
 /* BOT BUBBLE */
 .gatha-message.bot .gatha-message-content {
-    background-image: url('./gatha_ai_bot_chat_bubble.png');
+    background-image: url('./gatha_ai_bot_chat_bubble.jpg');
     color: var(--text);
 }
 
@@ -212,7 +211,7 @@ body {
 /* SEND BUTTON */
 .gatha-chat-input-area #send-button {
     background-color: transparent;
-    background-image: url('./gatha_ai_send_button.png');
+    background-image: url('./gatha_ai_send_button.jpg');
 
     width: 60px;
     height: 35px;
