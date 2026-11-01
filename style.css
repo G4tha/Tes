@@ -1,23 +1,22 @@
 
-/* =========================================
-   GATHA AI — PIXEL RPG EDITION
-   Retro 16-bit game interface
-========================================= */
+/* =====================================
+   GATHA AI — PIXEL FOREST EDITION
+   Indie RPG / Earth Tone / 16-bit
+===================================== */
 
 :root {
-    --bg: #100c20;
-    --bg2: #19132d;
-    --panel: #211a3a;
-    --panel2: #30264d;
+    --background: #171a16;
+    --surface: #222820;
+    --surface-light: #303a2d;
+    --surface-dark: #11150f;
 
-    --purple: #a98bff;
-    --purple-dark: #674bb0;
-    --blue: #72c9ff;
-    --white: #f5efff;
-    --muted: #aaa0c8;
+    --cream: #eee5c9;
+    --muted: #aaa98d;
 
-    --pixel-border: #514273;
-    --green: #7bffa5;
+    --green: #a4b77b;
+    --green-dark: #65794d;
+    --brown: #927451;
+    --border: #59644b;
 
     --pixel-font: 'Press Start 2P', monospace;
     --normal-font: 'Inter', sans-serif;
@@ -33,29 +32,22 @@
 }
 
 body {
-    width: 100%;
     min-height: 100vh;
     padding: 24px;
 
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 
-    overflow: hidden;
-
-    color: var(--white);
+    color: var(--cream);
     font-family: var(--normal-font);
 
-    background-color: var(--bg);
-    background-image:
-        linear-gradient(#ffffff08 1px, transparent 1px),
-        linear-gradient(90deg, #ffffff08 1px, transparent 1px),
-        radial-gradient(circle at 50% 40%, #342354, #100c20 75%);
+    background-color: var(--background);
 
-    background-size:
-        16px 16px,
-        16px 16px,
-        cover;
+    background-image:
+        radial-gradient(#a4b77b12 1px, transparent 1px);
+
+    background-size: 12px 12px;
 }
 
 /* MAIN WINDOW */
@@ -70,139 +62,93 @@ body {
 
     display: flex;
     flex-direction: column;
-
     overflow: hidden;
 
-    background:
-        linear-gradient(#100c20d9, #100c20e8),
-        url("./gatha_ai_chat_window.png");
+    background-color: var(--surface);
 
-    background-size: cover;
-    background-position: center;
-
-    border: 4px solid #514273;
+    border: 3px solid var(--border);
 
     box-shadow:
-        0 0 0 4px #211a3a,
-        0 0 0 8px #514273,
-        12px 12px 0 #080612,
-        0 0 50px #a98bff20;
-}
-
-/* SCANLINES */
-
-.app-container::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 5;
-
-    pointer-events: none;
-
-    background:
-        repeating-linear-gradient(
-            to bottom,
-            transparent 0px,
-            transparent 3px,
-            #00000012 4px
-        );
+        6px 6px 0 #090c08,
+        12px 12px 0 #090c0866;
 }
 
 /* HEADER */
 
 .header {
-    position: relative;
-    z-index: 2;
-
-    min-height: 82px;
-    padding: 15px 25px;
+    min-height: 76px;
+    padding: 14px 24px;
 
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
 
-    background: #19132d;
-    border-bottom: 4px solid var(--pixel-border);
-
-    box-shadow: 0 5px 0 #0b0815;
+    background: var(--surface-dark);
+    border-bottom: 3px solid var(--border);
 }
 
 .brand {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 15px;
 }
 
 .brand-icon {
-    width: 48px;
-    height: 48px;
+    width: 45px;
+    height: 45px;
 
     background:
         url("./gatha_ai_bot_icon.png") center/cover;
 
-    border: 3px solid var(--purple);
+    border: 2px solid var(--green);
 
-    box-shadow:
-        4px 4px 0 #080612,
-        0 0 0 3px #514273;
+    box-shadow: 3px 3px 0 #090c08;
 }
 
 .brand-info h2 {
     font-family: var(--pixel-font);
-    font-size: 15px;
-    color: var(--white);
-    text-shadow: 3px 3px 0 #674bb0;
+    font-size: 14px;
+    color: var(--cream);
 }
 
 .brand-info h2 span {
-    color: var(--blue);
+    color: var(--green);
 }
 
 .brand-info p {
-    margin-top: 10px;
+    margin-top: 9px;
 
     font-family: var(--pixel-font);
-    font-size: 8px;
+    font-size: 7px;
+    letter-spacing: 1px;
+
     color: var(--muted);
 }
 
-/* ONLINE STATUS */
+/* STATUS */
 
 .status {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 9px;
 
     font-family: var(--pixel-font);
     font-size: 8px;
+
     color: var(--green);
 }
 
 .status-dot {
-    width: 10px;
-    height: 10px;
+    width: 9px;
+    height: 9px;
 
     background: var(--green);
-
-    box-shadow:
-        3px 3px 0 #286d48,
-        0 0 10px #7bffa566;
-
-    animation: blink 1.5s steps(2) infinite;
-}
-
-@keyframes blink {
-    50% {
-        opacity: 0.3;
-    }
+    box-shadow: 2px 2px 0 var(--green-dark);
 }
 
 /* MAIN CONTENT */
 
 .main-content {
-    position: relative;
-    z-index: 1;
-
     flex: 1;
     min-height: 0;
 
@@ -212,9 +158,17 @@ body {
 
     padding: 20px;
     overflow: hidden;
+
+    background-color: var(--surface);
+
+    background-image:
+        linear-gradient(#ffffff05 1px, transparent 1px),
+        linear-gradient(90deg, #ffffff05 1px, transparent 1px);
+
+    background-size: 24px 24px;
 }
 
-/* WELCOME SCREEN */
+/* WELCOME */
 
 .info {
     width: 100%;
@@ -223,55 +177,44 @@ body {
 
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 
     text-align: center;
-    gap: 14px;
+    gap: 13px;
 }
 
 .welcome-icon {
-    width: 82px;
-    height: 82px;
+    width: 75px;
+    height: 75px;
 
     background:
         url("./gatha_ai_bot_icon.png") center/cover;
 
-    border: 4px solid var(--purple);
+    border: 3px solid var(--green);
 
     box-shadow:
-        6px 6px 0 #080612,
-        0 0 0 4px #514273;
-
-    animation: float 2s steps(4) infinite;
-}
-
-@keyframes float {
-    50% {
-        transform: translateY(-5px);
-    }
+        4px 4px 0 #090c08;
 }
 
 .welcome-label {
     font-family: var(--pixel-font);
-    font-size: 9px;
-    color: var(--blue);
-    letter-spacing: 2px;
+    font-size: 8px;
+    color: var(--green);
+    letter-spacing: 1px;
 }
 
 .info h1 {
     font-family: var(--pixel-font);
-    font-size: clamp(22px, 4vw, 34px);
+    font-size: clamp(21px, 4vw, 30px);
 
-    color: var(--white);
+    color: var(--cream);
 
-    text-shadow:
-        4px 4px 0 #674bb0,
-        7px 7px 0 #080612;
+    text-shadow: 3px 3px 0 #090c08;
 }
 
 .welcome-description {
-    max-width: 380px;
+    max-width: 360px;
 
     color: var(--muted);
     font-size: 13px;
@@ -280,18 +223,10 @@ body {
 
 .welcome-decoration {
     display: flex;
-    gap: 15px;
+    gap: 12px;
 
-    color: var(--purple);
-    font-size: 14px;
-
-    animation: decoration 2s steps(2) infinite;
-}
-
-@keyframes decoration {
-    50% {
-        opacity: 0.4;
-    }
+    color: var(--green);
+    font-size: 12px;
 }
 
 /* CHAT AREA */
@@ -302,24 +237,22 @@ body {
     min-height: 0;
 
     overflow-y: auto;
-
-    padding: 15px 12px;
+    padding: 14px 10px;
 
     scrollbar-width: thin;
-    scrollbar-color: var(--purple-dark) #171128;
+    scrollbar-color: var(--green-dark) var(--surface-dark);
 }
 
 .chat-container::-webkit-scrollbar {
-    width: 8px;
+    width: 7px;
 }
 
 .chat-container::-webkit-scrollbar-track {
-    background: #171128;
+    background: var(--surface-dark);
 }
 
 .chat-container::-webkit-scrollbar-thumb {
-    background: var(--purple-dark);
-    border: 2px solid #171128;
+    background: var(--green-dark);
 }
 
 #chat-log {
@@ -327,7 +260,7 @@ body {
 
     display: flex;
     flex-direction: column;
-    gap: 22px;
+    gap: 20px;
 }
 
 /* CHAT ROW */
@@ -337,15 +270,15 @@ body {
 
     display: flex;
     align-items: flex-start;
-    gap: 14px;
+    gap: 13px;
 
-    animation: message-enter 0.2s steps(4);
+    animation: appear 0.18s steps(3);
 }
 
-@keyframes message-enter {
+@keyframes appear {
     from {
         opacity: 0;
-        transform: translateY(8px);
+        transform: translateY(5px);
     }
 
     to {
@@ -354,20 +287,18 @@ body {
     }
 }
 
-/* BOT AND USER ICONS */
+/* AVATARS */
 
 .icon {
-    width: 42px;
-    height: 42px;
+    width: 40px;
+    height: 40px;
     flex-shrink: 0;
 
     overflow: hidden;
 
-    border: 3px solid var(--purple);
+    border: 2px solid var(--green);
 
-    box-shadow:
-        4px 4px 0 #080612,
-        0 0 0 2px #514273;
+    box-shadow: 3px 3px 0 #090c08;
 
     background-position: center;
     background-size: cover;
@@ -393,7 +324,7 @@ body {
 .chat-box .bot {
     max-width: min(75%, 620px);
 
-    padding: 15px 17px;
+    padding: 13px 16px;
 
     font-family: var(--normal-font);
     font-size: 14px;
@@ -402,38 +333,36 @@ body {
     white-space: pre-wrap;
     overflow-wrap: anywhere;
 
-    border: 3px solid var(--pixel-border);
-
-    box-shadow:
-        5px 5px 0 #080612;
+    border: 2px solid var(--border);
+    box-shadow: 3px 3px 0 #090c08;
 
     border-radius: 0;
 }
 
-/* BOT MESSAGE */
+/* BOT */
 
 .chat-box .bot {
-    color: var(--white);
+    color: var(--cream);
 
     background:
-        linear-gradient(#211a3add, #211a3add),
+        linear-gradient(#303a2dee, #303a2dee),
         url("./gatha_ai_bot_chat_bubble.png") center/cover;
 
-    border-color: #8068b5;
+    border-color: var(--green-dark);
 }
 
-/* USER MESSAGE */
+/* USER */
 
 .chat-box .user {
     margin-left: auto;
 
-    color: #ffffff;
+    color: #f5f0dc;
 
     background:
-        linear-gradient(#392c60dd, #392c60dd),
+        linear-gradient(#526044ee, #526044ee),
         url("./gatha_ai_user_chat_bubble.png") center/cover;
 
-    border-color: #a98bff;
+    border-color: var(--green);
 }
 
 /* USER ALIGNMENT */
@@ -442,23 +371,21 @@ body {
     flex-direction: row-reverse;
 }
 
-/* TYPING ANIMATION */
+/* TYPING */
 
 .typing-indicator {
     display: flex;
     align-items: center;
-    gap: 7px;
+    gap: 6px;
 }
 
 .typing-indicator span {
-    width: 8px;
-    height: 8px;
+    width: 7px;
+    height: 7px;
 
-    background: var(--blue);
+    background: var(--green);
 
-    box-shadow: 2px 2px 0 #080612;
-
-    animation: pixel-typing 0.8s steps(2) infinite;
+    animation: typing 0.8s steps(2) infinite;
 }
 
 .typing-indicator span:nth-child(2) {
@@ -469,26 +396,20 @@ body {
     animation-delay: 0.3s;
 }
 
-@keyframes pixel-typing {
+@keyframes typing {
     50% {
-        transform: translateY(-6px);
+        transform: translateY(-5px);
         opacity: 0.4;
     }
 }
 
-/* INPUT AREA */
+/* INPUT */
 
 .input-container {
-    position: relative;
-    z-index: 2;
+    padding: 17px 22px 14px;
 
-    padding: 18px 22px 15px;
-
-    background: #19132d;
-
-    border-top: 4px solid var(--pixel-border);
-
-    box-shadow: 0 -5px 0 #0b0815;
+    background: var(--surface-dark);
+    border-top: 3px solid var(--border);
 }
 
 .input-wrapper {
@@ -496,33 +417,27 @@ body {
 
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
 
-    padding: 8px;
+    padding: 7px;
 
-    background: #100c20;
+    background: var(--background);
+    border: 2px solid var(--border);
 
-    border: 3px solid #514273;
-
-    box-shadow:
-        5px 5px 0 #080612;
+    box-shadow: 3px 3px 0 #090c08;
 }
 
 .input-wrapper:focus-within {
-    border-color: var(--blue);
-
-    box-shadow:
-        5px 5px 0 #080612,
-        0 0 15px #72c9ff33;
+    border-color: var(--green);
 }
 
 #user-input {
     flex: 1;
     min-width: 0;
 
-    padding: 13px;
+    padding: 12px;
 
-    color: var(--white);
+    color: var(--cream);
     background: transparent;
 
     border: none;
@@ -533,49 +448,42 @@ body {
 }
 
 #user-input::placeholder {
-    color: #82769e;
+    color: #858875;
 }
 
 /* SEND BUTTON */
 
 #send-button {
-    width: 48px;
-    height: 48px;
+    width: 45px;
+    height: 45px;
     flex-shrink: 0;
 
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 
-    color: white;
+    color: var(--cream);
 
     background:
-        linear-gradient(#a98bff55, #a98bff55),
+        linear-gradient(#65794d66, #65794d66),
         url("./gatha_ai_send_button.png") center/cover;
 
-    border: 3px solid var(--purple);
+    border: 2px solid var(--green);
 
-    box-shadow:
-        4px 4px 0 #080612;
+    box-shadow: 3px 3px 0 #090c08;
 
     cursor: pointer;
-
-    transition: transform 0.1s steps(2);
+    transition: 0.1s steps(2);
 }
 
 #send-button:hover {
-    background-color: #674bb0;
-    transform: translate(-2px, -2px);
-
-    box-shadow:
-        6px 6px 0 #080612;
+    background-color: var(--green-dark);
+    transform: translate(-1px, -1px);
 }
 
 #send-button:active {
-    transform: translate(3px, 3px);
-
-    box-shadow:
-        1px 1px 0 #080612;
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0 #090c08;
 }
 
 #send-button:disabled {
@@ -584,26 +492,25 @@ body {
 }
 
 #button-icon {
-    font-size: 17px;
+    font-size: 16px;
 }
 
 /* FOOTER */
 
 .footer-text {
-    margin-top: 15px;
+    margin-top: 13px;
 
     text-align: center;
 
     font-family: var(--pixel-font);
-    font-size: 8px;
-
+    font-size: 7px;
     letter-spacing: 1px;
 
     color: var(--muted);
 }
 
 .footer-text i {
-    color: var(--blue);
+    color: var(--green);
 }
 
 /* MOBILE */
@@ -620,35 +527,33 @@ body {
         min-height: 0;
 
         border: none;
-
         box-shadow: none;
     }
 
     .header {
-        min-height: 72px;
-        padding: 12px 15px;
+        min-height: 68px;
+        padding: 11px 14px;
     }
 
     .brand {
-        gap: 12px;
+        gap: 11px;
     }
 
     .brand-icon {
-        width: 40px;
-        height: 40px;
+        width: 38px;
+        height: 38px;
     }
 
     .brand-info h2 {
-        font-size: 11px;
+        font-size: 10px;
     }
 
     .brand-info p {
-        font-size: 7px;
+        font-size: 6px;
     }
 
     .status {
         font-size: 7px;
-        gap: 7px;
     }
 
     .main-content {
@@ -656,21 +561,21 @@ body {
     }
 
     .info {
-        min-height: 170px;
-        gap: 12px;
+        min-height: 160px;
+        gap: 10px;
     }
 
     .welcome-icon {
-        width: 65px;
-        height: 65px;
+        width: 62px;
+        height: 62px;
     }
 
     .welcome-label {
-        font-size: 8px;
+        font-size: 7px;
     }
 
     .info h1 {
-        font-size: 22px;
+        font-size: 21px;
     }
 
     .welcome-description {
@@ -679,49 +584,40 @@ body {
     }
 
     .chat-container {
-        padding: 12px 4px;
-    }
-
-    #chat-log {
-        gap: 18px;
+        padding: 10px 3px;
     }
 
     .chat-box {
-        gap: 10px;
+        gap: 9px;
     }
 
     .icon {
-        width: 34px;
-        height: 34px;
+        width: 33px;
+        height: 33px;
     }
 
     .chat-box .user,
     .chat-box .bot {
         max-width: 82%;
-        padding: 11px 12px;
+        padding: 10px 12px;
         font-size: 13px;
     }
 
     .input-container {
-        padding: 13px 13px 12px;
-    }
-
-    .input-wrapper {
-        gap: 8px;
-        padding: 6px;
+        padding: 12px 12px 10px;
     }
 
     #user-input {
-        padding: 11px 8px;
+        padding: 10px 7px;
         font-size: 13px;
     }
 
     #send-button {
-        width: 42px;
-        height: 42px;
+        width: 41px;
+        height: 41px;
     }
 
     .footer-text {
-        font-size: 7px;
+        font-size: 6px;
     }
 }
